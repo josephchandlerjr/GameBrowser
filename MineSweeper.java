@@ -4,12 +4,12 @@ import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 import java.util.*;
 
-public class MineSweeperBoard implements MouseListener, GameBoard{
+public class MineSweeper implements MouseListener, Game{
 	private int rows;
 	private int cols;
 	MineSweeperSquare[][] boardArray;
 
-	public MineSweeperBoard(int rows, int cols){
+	public MineSweeper(int rows, int cols){
 		this.rows = rows;
 		this.cols = cols;
 		boardArray = new MineSweeperSquare[rows][cols];
