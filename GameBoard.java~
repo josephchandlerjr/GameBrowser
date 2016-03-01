@@ -1,5 +1,0 @@
-import javax.swing.JPanel;
-
-public interface GameBoard{
-	public JPanel getBoard();
-}
