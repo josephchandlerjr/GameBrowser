@@ -5,9 +5,10 @@ import javax.swing.SwingUtilities;
 import java.util.*;
 
 public class MineSweeper implements MouseListener, Game{
-	private int rows;
-	private int cols;
+	private int rows = 10; //by default, 10 rows and columns
+	private int cols = 10;
 	MineSweeperSquare[][] boardArray;
+	JPanel boardPanel;
 
 	public MineSweeper(int rows, int cols){
 		this.rows = rows;
@@ -15,8 +16,12 @@ public class MineSweeper implements MouseListener, Game{
 		boardArray = new MineSweeperSquare[rows][cols];
 	}
 
+	public MineSweeper(){
+		boardArray = new MineSweeperSquare[rows][cols];
+	}
+
 	public JPanel getBoard(){
-		JPanel boardPanel = new JPanel();
+		boardPanel = new JPanel();
 		boardPanel.setLayout(new GridLayout(rows,cols));
 
 		//populate boardArray, add squares to boardPanel with MouseListeners attached
@@ -59,6 +64,21 @@ public class MineSweeper implements MouseListener, Game{
 			sqr.makeIconIndexFinal();
 		}else{
 			System.out.println("game over");
+			for (int r = 0; r < rows; r++){
+				for (int c = 0; c < cols; c++){
+					MineSweeperSquare square = boardArray[r][c];
+					if (square.isBomb()){
+						square.setIconIndex(1);
+					}
+					else{
+						square.setIconIndex(3);
+					}
+					square.repaint();
+				}//end inner for loop
+			}//end for loop
+						boardPanel.setEnabled(false);
+
+
 		}
 		sqr.repaint();
 	}
